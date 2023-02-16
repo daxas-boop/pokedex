@@ -56,3 +56,37 @@ header {
 .botones-paginacion li a {
   border-radius: 0px !important;
 }
+
+.escondido {
+  display: none;
+}
+
+#cargando-pagina {
+  background: url('/assets/imagenes/loading-pokeball.png') center center no-repeat;
+  background-size: 64px 64px;
+  width: 64px;
+  height: 64px;
+  animation: girar 0.5s infinite;
+  -webkit-animation: girar 0.5s infinite;
+  -ms-animation: girar 0.5s infinite;
+  -moz-animation: girar 0.5s infinite;
+  -o-animation: girar 0.5s infinite;
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

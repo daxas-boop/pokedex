@@ -1,3 +1,11 @@
+function mostrarCargandoPagina() {
+  document.querySelector('#cargando-pagina').classList.remove('escondido');
+}
+
+function esconderCargandoPagina() {
+  document.querySelector('#cargando-pagina').classList.add('escondido');
+}
+
 function crearTituloPokemon(nombrePokemon, numeroPokemon) {
   const $titulo = document.createElement('div');
   const $nombre = document.createElement('p');
@@ -21,10 +29,11 @@ function crearCartaPokemon(nombrePokemon, numeroPokemon) {
   return $carta;
 }
 
-export function mostrarPokemones(pokemones) {
+function mostrarPokemones(pokemones) {
   const $contenedorCartas = document.querySelector('#cartas');
-  $contenedorCartas.innerHTML = '';
   pokemones.forEach((pokemon) => {
     $contenedorCartas.appendChild(crearCartaPokemon(pokemon.nombre, pokemon.numero));
   });
 }
+
+export { esconderCargandoPagina, mostrarCargandoPagina, mostrarPokemones };
