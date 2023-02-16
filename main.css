@@ -39,3 +39,20 @@ header {
   font-size: 1.2rem;
   font-weight: 500;
 }
+
+.pagination li a {
+  font-size: small;
+  padding: 0.25rem 0.6rem;
+}
+
+.pagination li a span {
+  font-size: small;
+}
+
+.botones-paginacion {
+  display: flex;
+}
+
+.botones-paginacion li a {
+  border-radius: 0px !important;
+}

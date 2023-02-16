@@ -17,12 +17,39 @@
         <cite>r/argentina programa</cite>
       </figcaption>
     </header>
-    <div class="container">
+    <div class="container d-flex flex-column min-vh-100">
       <main role="main" class="my-3">
         <div class="container text-center">
           <div id="cartas" class="row justify-content-center mb-3"></div>
         </div>
       </main>
+      <footer class="mt-auto mx-auto">
+        <nav>
+          <ul class="pagination">
+            <li id="boton-inicio" class="page-item">
+              <a class="page-link px-2" href="#">
+                <span aria-hidden="true">&lt;&lt;</span>
+              </a>
+            </li>
+            <li id="boton-previo" class="page-item">
+              <a class="page-link" href="#">
+                <span aria-hidden="true">&lt;</span>
+              </a>
+            </li>
+            <div class="botones-paginacion"></div>
+            <li id="boton-siguiente" class="page-item">
+              <a class="page-link" href="#">
+                <span aria-hidden="true">&gt;</span>
+              </a>
+            </li>
+            <li id="boton-final" class="page-item">
+              <a class="page-link px-2" href="#">
+                <span aria-hidden="true">&gt;&gt;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
     </div>
     <script type="module" src="src/index.js"></script>
   </body>
