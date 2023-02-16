@@ -11,8 +11,19 @@ header {
   background-position: 35% 65%;
   opacity: 85%;
   box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
-  margin: 5px 5px;
+  margin: 22px 5px;
   color: white;
+  position: relative;
+  transform: rotateY(0deg);
+  transition: transform 0.5s ease-out 0s;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  text-align: start;
+}
+
+.carta div {
+  pointer-events: none;
 }
 
 @media screen and (min-width: 1366px) {
@@ -22,22 +33,25 @@ header {
   }
 }
 
-@media screen and (min-width: 1440px) {
-  .carta {
-    width: 400px;
-    background-position: 0% 65%;
-  }
-}
-
 .carta:hover {
   opacity: 100%;
-  color: black;
+  color: rgb(48, 48, 48);
 }
 
 .titulo-carta {
   display: flex;
+  position: absolute;
+  top: 0px;
+  left: 10px;
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+.titulo-carta p {
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 .pagination li a {
@@ -89,4 +103,108 @@ header {
   100% {
     transform: rotate(360deg);
   }
+}
+
+.carta-volteada {
+  opacity: 100%;
+  transform: rotateY(360deg);
+  background: #ff3f45;
+  background-position: 70% 75%;
+  cursor: default;
+  color: rgb(48, 48, 48);
+}
+
+.carta-cargando {
+  background: #ff3f45 url('/assets/imagenes/loading.gif') 50% no-repeat;
+  background-position: center;
+}
+
+.imagen-carta {
+  height: 180px;
+  width: 180px;
+  position: absolute;
+  right: -10px;
+  text-indent: 100vw;
+}
+
+.datos-carta {
+  font-size: 1rem;
+}
+
+.imagen-cargando {
+  background: url('/assets/imagenes/loading.gif') 50% no-repeat;
+}
+
+/* Tipos pokemones */
+
+.grass {
+  background-color: #4ba329;
+}
+
+.fire {
+  background-color: #ff4422;
+}
+
+.normal {
+  background-color: #aaaa99;
+}
+
+.water {
+  background-color: #3399ff;
+}
+
+.electric {
+  background-color: #fecb33;
+}
+
+.ice {
+  background-color: #3f9edd;
+}
+
+.fighting {
+  background-color: #bb5544;
+}
+
+.poison {
+  background-color: #aa5599;
+}
+
+.ground {
+  background-color: #ddbb55;
+}
+
+.flying {
+  background-color: #8899ff;
+}
+
+.psychic {
+  background-color: #fb5496;
+}
+
+.bug {
+  background-color: #aabb22;
+}
+
+.rock {
+  background-color: #bbaa66;
+}
+
+.ghost {
+  background-color: #6666bb;
+}
+
+.dragon {
+  background-color: #7766ee;
+}
+
+.dark {
+  background-color: #775544;
+}
+
+.steel {
+  background-color: #aaaabb;
+}
+
+.fairy {
+  background-color: #ee99ee;
 }
