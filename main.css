@@ -76,7 +76,7 @@ header {
 }
 
 #cargando-pagina {
-  background: url('/assets/imagenes/loading-pokeball.png') center center no-repeat;
+  background: url('./assets/imagenes/loading-pokeball.png') center center no-repeat;
   background-size: 64px 64px;
   width: 64px;
   height: 64px;
@@ -115,7 +115,7 @@ header {
 }
 
 .carta-cargando {
-  background: #ff3f45 url('/assets/imagenes/loading.gif') 50% no-repeat;
+  background: #ff3f45 url('./assets/imagenes/loading.gif') 50% no-repeat;
   background-position: center;
 }
 
@@ -132,7 +132,7 @@ header {
 }
 
 .imagen-cargando {
-  background: url('/assets/imagenes/loading.gif') 50% no-repeat;
+  background: url('./assets/imagenes/loading.gif') 50% no-repeat;
 }
 
 /* Tipos pokemones */
