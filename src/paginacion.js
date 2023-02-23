@@ -1,13 +1,3 @@
-function bloquearBotonPaginacion($boton) {
-  $boton.classList.add('disabled');
-  $boton.onclick = '';
-}
-
-function desbloquearBotonPaginacion($boton, callbackClick) {
-  $boton.classList.remove('disabled');
-  $boton.onclick = callbackClick;
-}
-
 function crearBotonConNumero(pagina, estaSeleccionado, callbackClick) {
   const $boton = document.createElement('li');
   $boton.className = 'page-item';
@@ -25,61 +15,113 @@ function crearBotonConNumero(pagina, estaSeleccionado, callbackClick) {
   return $boton;
 }
 
-function crearBotonesConNumeroDePagina(ultimaPagina, paginaActual, callbackClick) {
-  const CANTIDAD_PAGINAS_A_LOS_LADOS = 2;
-  let paginaDesde = paginaActual - CANTIDAD_PAGINAS_A_LOS_LADOS;
-  let paginaHasta = paginaActual + CANTIDAD_PAGINAS_A_LOS_LADOS;
-
-  if (paginaHasta > ultimaPagina) {
-    const paginasExtraDesde = paginaHasta - ultimaPagina;
-    paginaDesde -= paginasExtraDesde;
-    paginaHasta = ultimaPagina;
+function calcularNumeroHasta(ultimaPagina, paginaActual, paginasALosLados) {
+  let numeroHasta = paginaActual + paginasALosLados;
+  if (numeroHasta > ultimaPagina) {
+    numeroHasta = ultimaPagina;
   }
 
-  if (paginaDesde < 1) {
-    const paginasExtraHasta = Math.abs(paginaDesde - 1);
-    const sobrepasaLaUltimaPagina = paginaHasta + paginasExtraHasta > ultimaPagina;
+  if (paginaActual - paginasALosLados < 1) {
+    const paginasExtraHasta = Math.abs(paginaActual - paginasALosLados - 1);
+    const sobrepasaLaUltimaPagina = numeroHasta + paginasExtraHasta > ultimaPagina;
     if (!sobrepasaLaUltimaPagina) {
-      paginaHasta += paginasExtraHasta;
+      numeroHasta += paginasExtraHasta;
     }
-    paginaDesde = 1;
   }
 
-  const $botonesConNumerosDePagina = [];
-  for (let i = paginaDesde; i <= paginaHasta; i++) {
+  return numeroHasta;
+}
+
+function calcularNumeroDesde(ultimaPagina, paginaActual, paginasALosLados) {
+  let numeroDesde = paginaActual - paginasALosLados;
+
+  if (numeroDesde < 1) {
+    numeroDesde = 1;
+  }
+
+  if (paginaActual + paginasALosLados > ultimaPagina) {
+    const numerosExtraDesde = paginaActual + paginasALosLados - ultimaPagina;
+    numeroDesde -= numerosExtraDesde;
+  }
+
+  return numeroDesde;
+}
+
+function crearNumerosPaginacion(ultimaPagina, paginaActual, callbackClick) {
+  const PAGINAS_A_LOS_LADOS = 2;
+  const numeroDesde = calcularNumeroDesde(ultimaPagina, paginaActual, PAGINAS_A_LOS_LADOS);
+  const numeroHasta = calcularNumeroHasta(ultimaPagina, paginaActual, PAGINAS_A_LOS_LADOS);
+
+  const $numerosPaginacion = [];
+  for (let i = numeroDesde; i <= numeroHasta; i++) {
     const estaSeleccionado = Number(paginaActual) === i;
     const $boton = crearBotonConNumero(i, estaSeleccionado, () => callbackClick(i));
-    $botonesConNumerosDePagina.push($boton);
+    $numerosPaginacion.push($boton);
   }
-  return $botonesConNumerosDePagina;
+  return $numerosPaginacion;
+}
+
+function adjuntarNumerosPaginacion(ultimaPagina, paginaActual, callbackClick) {
+  const $contenedorBotones = document.querySelector('.botones-paginacion');
+  $contenedorBotones.innerHTML = '';
+  const $numerosPaginacion = crearNumerosPaginacion(ultimaPagina, paginaActual, callbackClick);
+  $numerosPaginacion.forEach(($numero) => {
+    $contenedorBotones.appendChild($numero);
+  });
+}
+
+function desactivarBoton($boton) {
+  $boton.classList.add('disabled');
+  $boton.onclick = '';
+}
+
+function activarBoton($boton, callbackClick) {
+  $boton.classList.remove('disabled');
+  $boton.onclick = callbackClick;
+}
+
+function activarBotonesIrAdelante(ultimaPagina, paginaActual, callbackClick) {
+  const $irPaginaSiguiente = document.querySelector('#boton-siguiente');
+  const $irUltimaPagina = document.querySelector('#boton-final');
+  activarBoton($irPaginaSiguiente, () => callbackClick(paginaActual + 1));
+  activarBoton($irUltimaPagina, () => callbackClick(ultimaPagina));
+}
+
+function desactivarBotonesIrAdelante() {
+  const $irPaginaSiguiente = document.querySelector('#boton-siguiente');
+  const $irUltimaPagina = document.querySelector('#boton-final');
+  desactivarBoton($irPaginaSiguiente);
+  desactivarBoton($irUltimaPagina);
+}
+
+function activarBotonesIrAtras(paginaActual, callbackClick) {
+  const $irPaginaPrevia = document.querySelector('#boton-previo');
+  const $irPrimeraPagina = document.querySelector('#boton-inicio');
+  activarBoton($irPaginaPrevia, () => callbackClick(paginaActual - 1));
+  activarBoton($irPrimeraPagina, () => callbackClick(1));
+}
+
+function desactivarBotonesIrAtras() {
+  const $irPaginaPrevia = document.querySelector('#boton-previo');
+  const $irPrimeraPagina = document.querySelector('#boton-inicio');
+  desactivarBoton($irPaginaPrevia);
+  desactivarBoton($irPrimeraPagina);
 }
 
 export function actualizarPaginacion(ultimaPagina, paginaActual, callbackClick) {
-  const $irPaginaPrevia = document.querySelector('#boton-previo');
-  const $irPaginaSiguiente = document.querySelector('#boton-siguiente');
-  const $irPrimeraPagina = document.querySelector('#boton-inicio');
-  const $irUltimaPagina = document.querySelector('#boton-final');
+  const PRIMERA_PAGINA = 1;
 
-  if (paginaActual === 1) {
-    bloquearBotonPaginacion($irPaginaPrevia);
-    bloquearBotonPaginacion($irPrimeraPagina);
+  if (paginaActual === PRIMERA_PAGINA) {
+    desactivarBotonesIrAtras();
   } else {
-    desbloquearBotonPaginacion($irPaginaPrevia, () => callbackClick(paginaActual - 1));
-    desbloquearBotonPaginacion($irPrimeraPagina, () => callbackClick(1));
+    activarBotonesIrAtras(paginaActual, callbackClick);
   }
 
   if (paginaActual === ultimaPagina) {
-    bloquearBotonPaginacion($irPaginaSiguiente);
-    bloquearBotonPaginacion($irUltimaPagina);
+    desactivarBotonesIrAdelante();
   } else {
-    desbloquearBotonPaginacion($irPaginaSiguiente, () => callbackClick(paginaActual + 1));
-    desbloquearBotonPaginacion($irUltimaPagina, () => callbackClick(ultimaPagina));
+    activarBotonesIrAdelante(ultimaPagina, paginaActual, callbackClick);
   }
 
-  document.querySelector('.botones-paginacion').innerHTML = '';
-
-  const $botonesConNumeroDePagina = crearBotonesConNumeroDePagina(ultimaPagina, paginaActual, callbackClick);
-  $botonesConNumeroDePagina.forEach(($boton) => {
-    document.querySelector('.botones-paginacion').appendChild($boton);
-  });
+  adjuntarNumerosPaginacion(ultimaPagina, paginaActual, callbackClick);
 }
