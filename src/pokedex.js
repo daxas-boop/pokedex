@@ -29,7 +29,7 @@ function cambiarPagina(numeroPagina = 1) {
   traerListadoPokemones(offset, LIMITE).then((pokemones) => {
     const cantidadPaginas = Math.ceil(pokemones.cantidad / LIMITE);
     actualizarPaginacion(cantidadPaginas, numeroPagina, cambiarPagina);
-    mostrarPokemones(pokemones.resultados);
+    mostrarPokemones(pokemones.listaPokemones);
     manejarClickCartaPokemon();
     esconderCargandoPagina();
   });
