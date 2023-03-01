@@ -1,12 +1,4 @@
-function mostrarCargandoPagina() {
-  document.querySelector('#cargando-pagina').classList.remove('escondido');
-}
-
-function esconderCargandoPagina() {
-  document.querySelector('#cargando-pagina').classList.add('escondido');
-}
-
-function crearTituloPokemon(nombrePokemon, numeroPokemon) {
+function crearTituloPokemon(nombrePokemon, idPokemon) {
   const $titulo = document.createElement('div');
   const $nombre = document.createElement('p');
   const $numero = document.createElement('p');
@@ -14,7 +6,7 @@ function crearTituloPokemon(nombrePokemon, numeroPokemon) {
   $numero.className = 'me-2';
   $nombre.className = 'text-capitalize';
   $nombre.innerText = nombrePokemon;
-  $numero.innerText = '#' + numeroPokemon;
+  $numero.innerText = '#' + idPokemon;
   $titulo.appendChild($numero);
   $titulo.appendChild($nombre);
   return $titulo;
@@ -58,25 +50,18 @@ function crearImagenPokemon(src) {
   return $imagen;
 }
 
-function crearCartaPokemon(nombrePokemon, numeroPokemon) {
+function crearCartaPokemon(nombrePokemon, idPokemon) {
   const $carta = document.createElement('div');
   $carta.className = 'card carta';
-  const $titulo = crearTituloPokemon(nombrePokemon, numeroPokemon);
+  const $titulo = crearTituloPokemon(nombrePokemon, idPokemon);
   $carta.appendChild($titulo);
   $carta.dataset.nombre = nombrePokemon;
   return $carta;
 }
 
-function mostrarPokemones(pokemones) {
-  const $contenedorCartas = document.querySelector('#cartas');
-  pokemones.forEach((pokemon) => {
-    $contenedorCartas.appendChild(crearCartaPokemon(pokemon.nombre, pokemon.numero));
-  });
-}
-
-function mostrarDatosPokemon($carta, pokemon) {
+export function mostrarDatosPokemon($carta, pokemon) {
   $carta.innerHTML = '';
-  const $titulo = crearTituloPokemon(pokemon.nombre, pokemon.numero);
+  const $titulo = crearTituloPokemon(pokemon.nombre, pokemon.id);
   const $datos = crearDatosPokemon(pokemon);
   const $imagen = crearImagenPokemon(pokemon.imagen);
   $carta.classList.add(pokemon.tipo);
@@ -85,4 +70,9 @@ function mostrarDatosPokemon($carta, pokemon) {
   $carta.appendChild($imagen);
 }
 
-export { esconderCargandoPagina, mostrarCargandoPagina, mostrarPokemones, mostrarDatosPokemon };
+export function mostrarPokemones(pokemones) {
+  const $contenedorCartas = document.querySelector('#cartas');
+  pokemones.forEach((pokemon) => {
+    $contenedorCartas.appendChild(crearCartaPokemon(pokemon.nombre, pokemon.id));
+  });
+}
