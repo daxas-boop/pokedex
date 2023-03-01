@@ -1,4 +1,4 @@
-import { traerListadoPokemones, traerPokemon } from './api/pokemon.js';
+import { traerListadoPokemones, traerPokemon } from './servicios/pokemon.js';
 import { mostrarPokemones, mostrarDatosPokemon } from './ui/carta-pokemon.js';
 import { mostrarCargandoPagina, esconderCargandoPagina } from './ui/cargando.js';
 import { actualizarPaginacion } from './ui/paginacion.js';
