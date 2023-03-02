@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Pokedex</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  </head>
+  <body>
+    <header class="text-center p-1">
+      <blockquote class="blockquote">
+        <h1>Pokedex</h1>
+      </blockquote>
+      <figcaption class="blockquote-footer">
+        <cite>r/argentina programa</cite>
+      </figcaption>
+    </header>
+    <div class="container d-flex flex-column min-vh-100">
+      <main role="main" class="my-3">
+        <div class="container text-center">
+          <div id="cargando-pagina" class="my-5 mx-auto escondido"></div>
+          <div id="cartas" class="row justify-content-center mb-3"></div>
+        </div>
+      </main>
+      <footer class="mt-auto mx-auto">
+        <nav>
+          <ul class="pagination">
+            <li id="boton-inicio" class="page-item">
+              <a class="page-link px-2" href="#">
+                <span aria-hidden="true">&lt;&lt;</span>
+              </a>
+            </li>
+            <li id="boton-previo" class="page-item">
+              <a class="page-link" href="#">
+                <span aria-hidden="true">&lt;</span>
+              </a>
+            </li>
+            <div class="botones-paginacion"></div>
+            <li id="boton-siguiente" class="page-item">
+              <a class="page-link" href="#">
+                <span aria-hidden="true">&gt;</span>
+              </a>
+            </li>
+            <li id="boton-final" class="page-item">
+              <a class="page-link px-2" href="#">
+                <span aria-hidden="true">&gt;&gt;</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </footer>
+    </div>
+    <script type="module" src="src/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+header {
+  -webkit-box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+}
+
+.carta {
+  cursor: pointer;
+  width: 300px;
+  height: 120px;
+  background: url('./assets/imagenes/back.png') 80% no-repeat;
+  background-position: 35% 65%;
+  opacity: 85%;
+  box-shadow: 6px 6px 5px 0px rgba(0, 0, 0, 0.75);
+  margin: 22px 5px;
+  color: white;
+  position: relative;
+  transform: rotateY(0deg);
+  transition: transform 0.5s ease-out 0s;
+  display: flex;
+  align-items: start;
+  justify-content: center;
+  text-align: start;
+}
+
+.carta div {
+  pointer-events: none;
+}
+
+@media screen and (min-width: 1366px) {
+  .carta {
+    width: 340px;
+    background-position: 0% 65%;
+  }
+}
+
+.carta:hover {
+  opacity: 100%;
+  color: rgb(48, 48, 48);
+}
+
+.titulo-carta {
+  display: flex;
+  position: absolute;
+  top: 0px;
+  left: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.titulo-carta p {
+  max-width: 200px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+.pagination li a {
+  font-size: small;
+  padding: 0.25rem 0.6rem;
+}
+
+.pagination li a span {
+  font-size: small;
+}
+
+.botones-paginacion {
+  display: flex;
+}
+
+.botones-paginacion li a {
+  border-radius: 0px !important;
+}
+
+.escondido {
+  display: none;
+}
+
+#cargando-pagina {
+  background: url('/assets/imagenes/loading-pokeball.png') center center no-repeat;
+  background-size: 64px 64px;
+  width: 64px;
+  height: 64px;
+  animation: girar 0.5s infinite;
+  -webkit-animation: girar 0.5s infinite;
+  -ms-animation: girar 0.5s infinite;
+  -moz-animation: girar 0.5s infinite;
+  -o-animation: girar 0.5s infinite;
+}
+
+@keyframes girar {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.carta-volteada {
+  opacity: 100%;
+  transform: rotateY(360deg);
+  background: #ff3f45;
+  background-position: 70% 75%;
+  cursor: default;
+  color: rgb(48, 48, 48);
+}
+
+.carta-cargando {
+  background: #ff3f45 url('/assets/imagenes/loading.gif') 50% no-repeat;
+  background-position: center;
+}
+
+.imagen-carta {
+  height: 180px;
+  width: 180px;
+  position: absolute;
+  right: -10px;
+  text-indent: 100vw;
+}
+
+.datos-carta {
+  font-size: 1rem;
+}
+
+.imagen-cargando {
+  background: url('/assets/imagenes/loading.gif') 50% no-repeat;
+}
+
+/* Tipos pokemones */
+
+.grass {
+  background-color: #4ba329;
+}
+
+.fire {
+  background-color: #ff4422;
+}
+
+.normal {
+  background-color: #aaaa99;
+}
+
+.water {
+  background-color: #3399ff;
+}
+
+.electric {
+  background-color: #fecb33;
+}
+
+.ice {
+  background-color: #3f9edd;
+}
+
+.fighting {
+  background-color: #bb5544;
+}
+
+.poison {
+  background-color: #aa5599;
+}
+
+.ground {
+  background-color: #ddbb55;
+}
+
+.flying {
+  background-color: #8899ff;
+}
+
+.psychic {
+  background-color: #fb5496;
+}
+
+.bug {
+  background-color: #aabb22;
+}
+
+.rock {
+  background-color: #bbaa66;
+}
+
+.ghost {
+  background-color: #6666bb;
+}
+
+.dragon {
+  background-color: #7766ee;
+}
+
+.dark {
+  background-color: #775544;
+}
+
+.steel {
+  background-color: #aaaabb;
+}
+
+.fairy {
+  background-color: #ee99ee;
+}
